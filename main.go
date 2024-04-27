@@ -8,7 +8,7 @@ import (
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, Go Workshop!")
+		return c.JSON(http.StatusOK, map[string]string{"message": "Hello, Go Workshop!"})
 	})
 	e.Logger.Fatal(e.Start(":8080"))
 }

@@ -18,7 +18,7 @@ spec:
           image: ghcr.io/werockstar/go-app:af2e5196b8615df70ec641b89e0025d6aa703e84
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           resources:
             limits:
               cpu: "0.5"
