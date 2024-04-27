@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pred-api
-          image: nginx:latest
+          image: ghcr.io/werockstar/go-app:af2e5196b8615df70ec641b89e0025d6aa703e84
           imagePullPolicy: Always
           ports:
             - containerPort: 80
