@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pred-api
-          image: nginx:latest
+          image: hello-world:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
