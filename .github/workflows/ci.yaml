@@ -4,6 +4,9 @@ on:
     push:
         branches: [ main ]
 
+env:
+    PROJECT_NAME: go-gitops
+
 jobs:
     sonarqube:
         runs-on: ubuntu-latest
@@ -21,6 +24,8 @@ jobs:
                     args: >
                         -Dsonar.go.coverage.reportPaths=coverage.out
                         -Dsonar.language=go
+                        -Dsonar.sources=.
+                        -Dsonar.projectKey=${{ env.PROJECT_NAME }}
     build-and-push-docker-image:
         name: Build docker image and push to repositories
         runs-on: ubuntu-latest
@@ -40,7 +45,7 @@ jobs:
                 uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
                 with:
                     push: ${{ github.ref == 'refs/heads/main' }}
-                    tags: ghcr.io/werockstar/go-gitops:${{ env.GITHUB_SHA }}
+                    tags: ghcr.io/werockstar/${{ env.PROJECT_NAME }}:${{ env.GITHUB_SHA }}
 
             -   name: Image digest
                 run: echo ${{ steps.docker_build.outputs.digest }}
@@ -58,7 +63,7 @@ jobs:
                     git config user.email "robot@werockstar.dev"
             -   name: change image tag
                 run: |
-                    sed -i -E "s/ghcr.io\/werockstar\/go-gitops.*$/ghcr.io\/werockstar\/go-gitops:${GITHUB_SHA}/" gitops/dev/deployment.yml
+                    sed -i -E "s/ghcr.io\/werockstar\/${{ env.PROJECT_NAME }}.*$/ghcr.io\/werockstar\/${{ env.PROJECT_NAME }}:${GITHUB_SHA}/" gitops/dev/deployment.yml
                     git add gitops/dev/deployment.yml
                     git commit -m "[skip actions] 🤖 change docker image version to ${GITHUB_SHA}"
             -   name: push changes
