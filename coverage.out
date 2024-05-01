@@ -1,0 +1,7 @@
+mode: set
+github.com/werockstar/go-app/main.go:8.13,10.40 2 0
+github.com/werockstar/go-app/main.go:10.40,12.3 1 0
+github.com/werockstar/go-app/main.go:13.2,13.44 1 0
+github.com/werockstar/go-app/main.go:13.44,15.3 1 0
+github.com/werockstar/go-app/main.go:16.2,16.34 1 0
+github.com/werockstar/go-app/calculator/calculator.go:3.24,5.2 1 1

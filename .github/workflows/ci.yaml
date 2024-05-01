@@ -18,6 +18,8 @@ jobs:
                     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
                 with:
                     projectBaseDir: .
+                    args: >
+                        -Dsonar.go.coverage.reportPaths=coverage.out
     build-and-push-docker-image:
         name: Build docker image and push to repositories
         runs-on: ubuntu-latest
